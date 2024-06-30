@@ -6,13 +6,39 @@ from gapp.models import Gapp
 def home(request):
 
     print(request.path)
+    about_template = 'user.html'    
+    Gapp.objects.create(path=request.path)
+    page_count = Gapp.objects.all().count() 
+    path_count = Gapp.objects.filter(path=request.path).count()
+    percent = ( page_count / path_count ) * 100
+
     context = {
         "name": "khubaib",
-        "queryset": Gapp.objects.filter(path=request.path).count()
+        "page_visits": Gapp.objects.filter(path=request.path).count(),
+        'total_visits': Gapp.objects.all().count(),
+        "percent": percent,
     }
-    print(Gapp.objects.all())
-    Gapp.objects.create(path=request.path)
-    print(Gapp.objects.filter(path=request.path))
     
     return render(request, "index.html", context)
+
+def about(request, *args, **kwargs):    
+        
+        about_template = 'user.html'    
+        Gapp.objects.create(path=request.path)
+        page_count = Gapp.objects.all().count() 
+        path_count = Gapp.objects.filter(path=request.path).count()
+        percent = ( page_count / path_count ) * 100
+
+        context = {
+            "name": "khubaib",
+            "page_visits": Gapp.objects.filter(path=request.path).count(),
+            'total_visits': Gapp.objects.all().count(),
+            "percent": percent,
+
+        }
+
+
+
+        return render(request, "home.html", context)
+    
 

@@ -16,10 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from gullo.views import home 
+from gullo.views import home , about
 
 
 urlpatterns = [
     path("hello/", home, name="home"),
+    path('hello.html/', about, name='about'),
     path('admin/', admin.site.urls),
 ]
