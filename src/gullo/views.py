@@ -35,6 +35,7 @@ def about(request, *args, **kwargs):
             "page_visits": Gapp.objects.filter(path=request.path).count(),
             'total_visits': Gapp.objects.all().count(),
             "percent": percent,
+            "example": "abcd"
 
         }
 
