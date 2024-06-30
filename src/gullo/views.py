@@ -13,10 +13,11 @@ def home(request):
     percent = ( page_count / path_count ) * 100
 
     context = {
-        "name": "khubaib",
+        
         "page_visits": Gapp.objects.filter(path=request.path).count(),
         'total_visits': Gapp.objects.all().count(),
         "percent": percent,
+        "name": "khubaib"
     }
     
     return render(request, "index.html", context)
